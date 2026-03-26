@@ -1,0 +1,11 @@
+langchain>=1.2.0
+langgraph>=1.0.2,<1.1.0
+langchain-groq
+langchain-community
+fastapi
+uvicorn
+pydantic>=2.0
+pandas
+python-dotenv
+requests
+wbgapi==1.0.12
