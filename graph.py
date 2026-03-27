@@ -36,41 +36,41 @@ workflow.add_edge("supervisor", END)
 sutra_engine = workflow.compile()
 
 if __name__ == "__main__":
-    print("\n" + "="*60)
-    print("SUTRA ENGINE: NATIONAL STRATEGIC INTELLIGENCE (2026)")
-    print("="*60)
+    print("\nSUTRA ENGINE: LOCAL COMMAND CONSOLE")
+    
+    print("Modes: 1: Goal | 2: Policy | 3: Crisis")
+    choice = input("Select Mission Mode (1-3): ")
+    modes = {"1": "Goal", "2": "Policy", "3": "Crisis"}
+    selected_task = modes.get(choice, "Goal")
 
-    while True:
-        user_query = input("\nEnter National Query (or 'exit'): ")
-        if user_query.lower() in ["exit", "quit"]:
-            break
+    query = input(f"Enter {selected_task} Query: ")
 
-        
-        initial_state = {
-            "query": user_query,
-            "messages": [],
-            "agent_insights": {},
-            "thinking_logs": {},
-            "adversary_critique": "",
-            "final_report": ""
-        }
-
-        print("\n[SYSTEM]: Activating Specialist Nodes...")
-        
-        
-        final_state = sutra_engine.invoke(initial_state)
+    initial_state = {
+        "query": query,
+        "task_type": selected_task,
+        "messages": [],
+        "agent_insights": {},
+        "thinking_logs": {},
+        "final_report": ""
+    }
 
         
-        print("\n" + "-"*30)
-        print("LIVE THOUGHT STREAM")
-        print("-"*30)
-        
-        for agent, thoughts in final_state["thinking_logs"].items():
-            for thought in thoughts:
-                print(f"[{agent.upper()}]: {thought}")
 
-        print("\n" + "="*60)
-        print("FINAL STRATEGIC REPORT")
-        print("="*60)
-        print(final_state["final_report"])
-        print("="*60)
+    print(f"\n[SYSTEM]: Activating Specialist Nodes in {selected_task} mode...")
+    print("-" * 30 + "\nLIVE THOUGHT STREAM\n" + "-" * 30)
+
+    final_state_data = None
+
+    for output in sutra_engine.stream(initial_state):
+        for key, value in output.items():
+            if "thinking_logs" in value:
+                logs = value["thinking_logs"].get(key, [])
+                for log in logs:
+                    print(f"[{key.upper()}]: {log}")
+            
+            if key == "supervisor":
+                final_state_data = value
+
+    if final_state_data:
+        print("\n" + "="*60 + "\nFINAL STRATEGIC REPORT\n" + "="*60)
+        print(final_state_data.get("final_report", "No report generated."))

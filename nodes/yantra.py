@@ -1,5 +1,5 @@
 from nodes.factory import create_thought_node
-from tools import fetch_indian_news
+from tools import get_resource_status, fetch_indian_news
 
 
-yantra_node = create_thought_node([fetch_indian_news], "You are Yantra. Focus on digital infrastructure and deep-tech.", "yantra")
+yantra_node = create_thought_node([get_resource_status, fetch_indian_news],"yantra")

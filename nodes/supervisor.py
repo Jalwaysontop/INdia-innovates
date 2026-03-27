@@ -1,29 +1,53 @@
 from nodes.factory import llm_8b
 from state import SutraState
 
-def supervisor_node(state: SutraState):
+def get_synthesis_instructions(task_type):
     
-    thought = ["Samanvaya is synthesizing all 5 minister reports...", 
-               "Integrating Vikriti's stress-test results into the final strategy."]
+    instructions = {
+        "Goal": """
+            STYLE: Strategic Roadmap.
+            FOCUS: Milestones, resource allocation, and policy requirements.
+            HEADERS: 'TARGET FEASIBILITY', 'MINISTERIAL ALIGNMENT', and '5-STEP IMPLEMENTATION ROADMAP'.
+        """,
+        "Policy": """
+            STYLE: Impact Prediction.
+            FOCUS: Success vs. Failure probability, unintended consequences, and historical precedents.
+            HEADERS: 'PREDICTED OUTCOME', 'STRESS-TEST ANALYSIS', and 'SWOT ANALYSIS (Strengths, Weaknesses, Opportunities, Threats)'.
+        """,
+        "Crisis": """
+            STYLE: Emergency Executive Brief.
+            FOCUS: Immediate damage control, risk of escalation, and survival metrics.
+            HEADERS: 'IMMEDIATE IMPACT ASSESSMENT', 'VIKRITI RISK ALERTS', and 'EMERGENCY MITIGATION STEPS'.
+        """
+    }
+    return instructions.get(task_type, "Provide a general strategic summary.")
 
+def supervisor_node(state: SutraState):
+    task = state.get("task_type", "Goal")
     insights = state.get("agent_insights", {})
     critique = state.get("adversary_critique", "")
     user_query = state.get("query", "")
 
+    thought = [
+        f"Samanvaya is synthesizing reports for the '{task}' mission...", 
+        f"Countering Vikriti's vulnerabilities with ministerial data."
+    ]
+
+    task_style = get_synthesis_instructions(task)
+    
     summary_prompt = f"""
-    You are the Sutra Samanvaya (National Coordinator). 
+    You are the Sutra Samanvaya (Chief National Coordinator). 
+    MISSION TYPE: {task}
     
-    User Query: {user_query}
+    CORE QUERY: {user_query}
+    MINISTER REPORTS: {insights}
+    ADVERSARIAL CRITIQUE: {critique}
     
-    Minister Insights: {insights}
-    Adversarial Critique: {critique}
+    YOUR INSTRUCTIONS:
+    {task_style}
     
-    Your Task:
-    1. Summarize the collective findings.
-    2. Address the flaws pointed out by Vikriti.
-    3. Provide a clear, actionable National Strategy.
-    
-    Format the output with clear headers like 'ECONOMIC IMPACT', 'SECURITY CLEARANCE', and 'FINAL RECOMMENDATION'.
+    MANDATORY: Address Vikriti's critique directly. If Vikriti found a fatal flaw, 
+    propose a solution or acknowledge the high risk of the current path.
     """
 
     response = llm_8b.invoke(summary_prompt)

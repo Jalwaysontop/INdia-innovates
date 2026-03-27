@@ -8,6 +8,10 @@ load_dotenv()
 
 @tool
 def fetch_indian_news(topic: str):
+    """
+    Fetches the latest national and regional news from India 
+    based on a specific search query.
+    """
     
     api_key = os.getenv("NEWS_API_KEY")
     url = f"https://newsapi.org/v2/everything?q=India+{topic}&sortBy=publishedAt&pageSize=3&apiKey={api_key}"
@@ -26,6 +30,10 @@ def fetch_indian_news(topic: str):
 
 @tool
 def get_economic_indicators():
+    """
+    Retrieves real-time economic data (GDP, Inflation, etc.) 
+    from the World Bank API for strategic analysis.
+    """
     
     try:
         indicators = {'GDP_Growth': 'NY.GDP.MKTP.KD.ZG', 'Inflation': 'FP.CPI.TOTL.ZG'}
@@ -40,6 +48,11 @@ def get_economic_indicators():
 
 @tool
 def get_resource_status(sector: str):
+    """
+    Retrieves the current availability, stock levels, and distribution 
+    status of national resources like LPG, electricity, or water. 
+    Essential for 'Crisis' and 'Goal' impact analysis.
+    """
     stats = {
         "energy": "Grid Status: Stable. Renewable Share: 42%. Solar Capacity: 75GW (Target 100GW).",
         "water": "Groundwater Level: Critical in North India. Reservoir storage at 85% of 10-year average.",
