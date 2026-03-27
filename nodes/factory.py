@@ -12,14 +12,23 @@ llm_8b = ChatGroq(
 )
 
 def get_dynamic_prompt(agent_name, task_type):
+
+    base_instruction = (
+        f"You are {agent_name}. ONLY use the provided tools. "
+        "If you need to call multiple tools, call them ONE BY ONE. "
+        "Do not concatenate multiple tool calls in a single turn. "
+        "Wait for the output of one tool before requesting the next."
+    )
     
     prompts = {
-        "Goal": f"You are {agent_name}. A national goal has been set. Suggest specific strategies and policies to achieve it.",
-        "Policy": f"You are {agent_name}. Evaluate this proposed policy. Predict its real-world success or failure based on current data.",
-        "Crisis": f"You are {agent_name}. A live crisis is occurring. Analyze the immediate damage and long-term risks to your sector."
+        "Goal": f"{base_instruction} Focus on long-term strategy for this goal.",
+        "Policy": f"{base_instruction} Analyze the impact and success probability.",
+        "Crisis": f"{base_instruction} Prioritize immediate resource status and damage control."
     }
-    return prompts.get(task_type, f"You are {agent_name}, a national strategic analyst.")
-
+    
+    return prompts.get(task_type, base_instruction)
+    
+   
 def create_thought_node(tools, name):
     
     def node(state):
