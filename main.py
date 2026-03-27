@@ -10,7 +10,7 @@ from state import SutraState
 app = FastAPI(
     title="IntelGraph Sovereign API",
     description="Strategic Intelligence Bridge for National Policy Analysis",
-    version="2.0.0"
+    version="1.0.0"
 )
 
 app.add_middleware(
@@ -24,7 +24,13 @@ app.add_middleware(
 class StrategicRequest(BaseModel):
     query: str
     task_type: str 
-
+@app.get("/")
+async def root():
+    return {
+        "status": "Sutra Sovereign Engine Online",
+        "version": "2026.1.0",
+        "endpoints": ["/analyze", "/docs"]
+    }
 @app.post("/analyze")
 async def run_strategic_analysis(request: StrategicRequest):
     
