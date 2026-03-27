@@ -1,10 +1,8 @@
 ---
-title: IntelGraph Agents
-emoji: ⚡
-colorFrom: pink
-colorTo: gray
+title: IntelGraph Sovereign Engine
+emoji: 🏛️
+colorFrom: indigo
+colorTo: slate
 sdk: docker
-pinned: false
+app_port: 7860
 ---
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
