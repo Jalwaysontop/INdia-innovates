@@ -36,7 +36,7 @@ workflow.add_edge("supervisor", END)
 sutra_engine = workflow.compile()
 
 if __name__ == "__main__":
-    print("\nSUTRA ENGINE: LOCAL COMMAND CONSOLE")
+    print("\nINTELGRAPH ENGINE: LOCAL COMMAND CONSOLE")
     
     print("Modes: 1: Goal | 2: Policy | 3: Crisis")
     choice = input("Select Mission Mode (1-3): ")

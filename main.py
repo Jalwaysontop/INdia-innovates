@@ -8,7 +8,7 @@ from graph import sutra_engine
 from state import SutraState
 
 app = FastAPI(
-    title="Sutra Sovereign API",
+    title="IntelGraph Sovereign API",
     description="Strategic Intelligence Bridge for National Policy Analysis",
     version="2.0.0"
 )
