@@ -3,7 +3,7 @@ title: IntelGraph Sovereign Engine
 colorFrom: indigo
 colorTo: yellow
 sdk: streamlit
-sdk_version: "1.35.0"
+sdk_version: "1.40.0"
 app_file: streamlit_app.py
 app_port: 8501
 pinned: false
