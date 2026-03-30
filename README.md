@@ -11,11 +11,11 @@ IntelGraph operates on a **7-Agent Cabinet System** to ensure high reliability a
 ### 🧠 The Intelligence Layer
 | Agent | Role | Technical Focus |
 | :--- | :--- | :--- |
-| **Sovereign Supervisor** | Orchestrator | Task delegation and final consensus [Technical Reason: Master Coordination]. |
-| **Artha Agent** | Economy | Fiscal analysis and trade impact [Technical Reason: Economic modeling]. |
-| **Raksha Agent** | Security | Tactical defense and internal stability [Technical Reason: Risk assessment]. |
-| **Shakti Agent** | Resources | Energy and supply chain security [Technical Reason: Resource mapping]. |
-| **Vikriti Agent** | Red Team | **Adversarial Analysis** and risk mitigation [Technical Reason: Strategic stress-testing]. |
+| **Sovereign Supervisor** | Orchestrator | Task delegation and final consensus. |
+| **Artha Agent** | Economy | Fiscal analysis and trade impact. |
+| **Raksha Agent** | Security | Tactical defense and internal stability. |
+| **Shakti Agent** | Resources | Energy and supply chain security. |
+| **Vikriti Agent** | Red Team | **Adversarial Analysis** and risk mitigation. |
 
 ---
 
