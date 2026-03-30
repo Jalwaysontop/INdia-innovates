@@ -1,8 +1,7 @@
 ---
 title: IntelGraph Sovereign Engine
-emoji: null
 colorFrom: indigo
-colorTo: orange
+colorTo: yellow
 sdk: streamlit
 sdk_version: "1.35.0"
 app_file: streamlit_app.py
